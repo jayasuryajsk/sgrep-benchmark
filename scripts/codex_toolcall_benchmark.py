@@ -7,6 +7,7 @@ import os
 import subprocess
 import sys
 import time
+import argparse
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -38,22 +39,43 @@ class RunResult:
     latency_ms: float
 
 
-def run_codex(query: str, repo: Path, mode: str) -> Tuple[str, float]:
-    if mode == "sgrep":
-        prompt = (
-            "Find: " + query + ". "
-            "Use the semantic_search tool exactly once. "
-            "Do not run any shell commands and do not read files. "
-            "Return top 3 file paths."
-        )
-    else:
-        prompt = (
-            "Find: " + query + ". "
-            "Do NOT use semantic_search or sgrep. "
-            "Use rg to search for relevant keywords in *.ts and *.tsx (2-3 rg commands). "
-            "Then read up to 3 files with sed -n '1,160p'. "
-            "Return top 3 file paths."
-        )
+def build_prompt(query: str, preset: str, mode: str) -> str:
+    if preset == "forced":
+        if mode == "sgrep":
+            return (
+                "Find: " + query + ". "
+                "Use the semantic_search tool exactly once. "
+                "Do not run any shell commands and do not read files. "
+                "Return top 3 file paths."
+            )
+        if mode == "rg":
+            return (
+                "Find: " + query + ". "
+                "Do NOT use semantic_search or sgrep. "
+                "Use rg to search for relevant keywords in *.ts and *.tsx (2-3 rg commands). "
+                "Then read up to 3 files with sed -n '1,160p'. "
+                "Return top 3 file paths."
+            )
+    if preset == "natural":
+        if mode == "sgrep_rg":
+            return (
+                "Find: " + query + ". "
+                "Prefer semantic_search first if available, then use rg or read files only if needed. "
+                "Do not edit files. Keep tool calls minimal. "
+                "Return only the most relevant file paths (comma-separated)."
+            )
+        if mode == "rg_only":
+            return (
+                "Find: " + query + ". "
+                "Do NOT use semantic_search or sgrep. Use rg and read files as needed. "
+                "Do not edit files. Keep tool calls minimal. "
+                "Return only the most relevant file paths (comma-separated)."
+            )
+    raise ValueError("Invalid preset/mode combination")
+
+
+def run_codex(query: str, repo: Path, preset: str, mode: str) -> Tuple[str, float]:
+    prompt = build_prompt(query, preset, mode)
 
     cmd = [
         CODEX,
@@ -120,19 +142,39 @@ def parse_session(path: Path) -> Tuple[int, Dict[str, int], int]:
     return tool_calls, tool_names, total_tokens
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Codex-Kaioken tool-call benchmark.")
+    parser.add_argument("repo", help="Path to target repo")
+    parser.add_argument(
+        "--preset",
+        choices=("forced", "natural"),
+        default="forced",
+        help="Benchmark preset: forced tool usage or natural usage",
+    )
+    parser.add_argument(
+        "--out",
+        default="reports/codex_toolcall_comparison.json",
+        help="Output JSON path",
+    )
+    return parser.parse_args()
+
+
 def main() -> int:
-    if len(sys.argv) < 2:
-        print("Usage: codex_toolcall_benchmark.py /path/to/repo")
-        return 1
-    repo = Path(sys.argv[1]).resolve()
+    args = parse_args()
+    repo = Path(args.repo).resolve()
     if not repo.exists():
         print(f"Repo not found: {repo}")
         return 1
 
     results: List[RunResult] = []
-    for mode in ("sgrep", "rg"):
+    if args.preset == "forced":
+        modes = ("sgrep", "rg")
+    else:
+        modes = ("sgrep_rg", "rg_only")
+
+    for mode in modes:
         for query in QUERIES:
-            thread_id, elapsed = run_codex(query, repo, mode)
+            thread_id, elapsed = run_codex(query, repo, args.preset, mode)
             session_path = find_session_file(thread_id)
             tool_calls, tool_names, total_tokens = parse_session(session_path)
             results.append(
@@ -150,7 +192,7 @@ def main() -> int:
 
     # Summaries
     summary = {}
-    for mode in ("sgrep", "rg"):
+    for mode in modes:
         subset = [r for r in results if r.mode == mode]
         if not subset:
             continue
@@ -164,12 +206,13 @@ def main() -> int:
 
     out = {
         "repo": str(repo),
+        "preset": args.preset,
         "queries": QUERIES,
         "results": [r.__dict__ for r in results],
         "summary": summary,
     }
 
-    out_path = Path("reports/codex_toolcall_comparison.json")
+    out_path = Path(args.out)
     out_path.write_text(json.dumps(out, indent=2))
     print(f"Wrote {out_path}")
     return 0

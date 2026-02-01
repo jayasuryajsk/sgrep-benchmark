@@ -1,0 +1,24 @@
+{
+  "runs": [
+    "reports/codex_toolcall_natural_run1.json",
+    "reports/codex_toolcall_natural_run2.json",
+    "reports/codex_toolcall_natural_run3.json"
+  ],
+  "summary": {
+    "sgrep_rg": {
+      "avg_tool_calls_median": 2.38,
+      "avg_total_tokens_median": 26637,
+      "avg_latency_ms_median": 44460.35
+    },
+    "rg_only": {
+      "avg_tool_calls_median": 5.12,
+      "avg_total_tokens_median": 74664,
+      "avg_latency_ms_median": 95931.58
+    },
+    "reductions": {
+      "tool_calls_pct": 53.5,
+      "tokens_pct": 64.3,
+      "latency_pct": 53.7
+    }
+  }
+}

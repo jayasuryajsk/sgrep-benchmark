@@ -10,6 +10,14 @@ At a glance (opencode repo, 8 queries, 3 runs median):
 | Tokens | 10,575 | 70,508 | -85.0% |
 | End-to-end latency | 9.9s | 72.3s | -86.3% |
 
+Natural usage (no fixed limits, 8 queries, 3 runs median):
+
+| Metric (per-query) | sgrep+rg | rg-only | delta |
+| --- | --- | --- | --- |
+| Tool calls | 2.38 | 5.12 | -53.5% |
+| Tokens | 26,637 | 74,664 | -64.3% |
+| End-to-end latency | 44.5s | 95.9s | -53.7% |
+
 Same-session sanity check (8 queries, single thread):
 
 | Metric (total) | sgrep | rg | delta |
@@ -56,17 +64,19 @@ python3 scripts/run_gold_benchmark.py /path/to/repo
 
 3) Run Codex tool-call benchmarks (per-query sessions)
 ```
-python3 scripts/codex_toolcall_benchmark.py /path/to/repo
+python3 scripts/codex_toolcall_benchmark.py /path/to/repo --preset forced
+python3 scripts/codex_toolcall_benchmark.py /path/to/repo --preset natural --out reports/codex_toolcall_natural_run1.json
 ```
 
 4) Run Codex tool-call benchmark (single session)
 ```
-python3 scripts/codex_toolcall_benchmark_session.py /path/to/repo sgrep
-python3 scripts/codex_toolcall_benchmark_session.py /path/to/repo rg
+python3 scripts/codex_toolcall_benchmark_session.py /path/to/repo forced sgrep
+python3 scripts/codex_toolcall_benchmark_session.py /path/to/repo forced rg
+python3 scripts/codex_toolcall_benchmark_session.py /path/to/repo natural sgrep_rg
+python3 scripts/codex_toolcall_benchmark_session.py /path/to/repo natural rg_only
 ```
 
 ## Notes
 - Benchmark date: 2026-02-01
 - Environment: MacBook Pro (M1 Pro, 10 cores, 16 GB RAM), macOS 26.3
 - sgrep: 1.2.1, ripgrep: 14.1.1
-

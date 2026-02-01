@@ -39,6 +39,23 @@ Artifacts:
 - `reports/codex_toolcall_session_rg.json`
 - `reports/codex_toolcall_session_summary.json`
 
+## Part A2: Tool‑Call Efficiency (Natural tool use, no fixed limits)
+**Method**
+- 8 real exploration queries, repeated 3 times.
+- Run A: allow `semantic_search` first, then rg/read only if needed (no fixed limits).
+- Run B: rg/read only (no semantic_search), no fixed limits.
+
+**Results (median averages per query across 3 runs)**
+- Tool calls: **sgrep+rg 2.38** vs **rg‑only 5.12** (‑53.5%)
+- Tokens: **sgrep+rg ~26,637** vs **rg‑only ~74,664** (‑64.3%)
+- End‑to‑end latency: **sgrep+rg ~44.5s** vs **rg‑only ~95.9s** (‑53.7%)
+
+Artifacts:
+- `reports/codex_toolcall_natural_run1.json`
+- `reports/codex_toolcall_natural_run2.json`
+- `reports/codex_toolcall_natural_run3.json`
+- `reports/codex_toolcall_natural_summary.json`
+
 ## Part B: Accuracy on a Gold Query Set
 **Gold set**
 - 50 natural‑language queries with verified ground‑truth files/line ranges.

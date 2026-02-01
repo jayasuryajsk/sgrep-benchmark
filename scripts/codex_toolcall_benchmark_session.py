@@ -25,9 +25,9 @@ QUERIES = [
 ]
 
 
-def build_prompt(mode: str) -> str:
+def build_prompt(preset: str, mode: str) -> str:
     items = "\n".join([f"{i+1}. {q}" for i, q in enumerate(QUERIES)])
-    if mode == "sgrep":
+    if preset == "forced" and mode == "sgrep":
         return (
             "Answer the following queries in order.\n"
             "Rules: For EACH query, use the semantic_search tool exactly once. "
@@ -38,7 +38,7 @@ def build_prompt(mode: str) -> str:
             "Q1: <path1>, <path2>, <path3>\n"
             "Q2: ..."
         )
-    if mode == "rg":
+    if preset == "forced" and mode == "rg":
         return (
             "Answer the following queries in order.\n"
             "Rules: For EACH query, do NOT use semantic_search or sgrep. "
@@ -50,7 +50,29 @@ def build_prompt(mode: str) -> str:
             "Q1: <path1>, <path2>, <path3>\n"
             "Q2: ..."
         )
-    raise ValueError("mode must be sgrep or rg")
+    if preset == "natural" and mode == "sgrep_rg":
+        return (
+            "Answer the following queries in order.\n"
+            "Rules: Prefer semantic_search first if available, then use rg or read files only if needed. "
+            "Do not edit files. Keep tool calls minimal. "
+            "Return only the most relevant file paths for each query.\n\n"
+            f"Queries:\n{items}\n\n"
+            "Output format:\n"
+            "Q1: <paths>\n"
+            "Q2: ..."
+        )
+    if preset == "natural" and mode == "rg_only":
+        return (
+            "Answer the following queries in order.\n"
+            "Rules: Do NOT use semantic_search or sgrep. Use rg and read files as needed. "
+            "Do not edit files. Keep tool calls minimal. "
+            "Return only the most relevant file paths for each query.\n\n"
+            f"Queries:\n{items}\n\n"
+            "Output format:\n"
+            "Q1: <paths>\n"
+            "Q2: ..."
+        )
+    raise ValueError("invalid preset/mode")
 
 
 def run_codex(prompt: str, repo: Path) -> Tuple[str, float]:
@@ -118,22 +140,30 @@ def parse_session(path: Path) -> Tuple[int, Dict[str, int], int]:
 
 
 def main() -> int:
-    if len(sys.argv) < 3:
-        print("Usage: codex_toolcall_benchmark_session.py /path/to/repo <sgrep|rg>")
+    if len(sys.argv) < 4:
+        print("Usage: codex_toolcall_benchmark_session.py /path/to/repo <forced|natural> <mode>")
         return 1
     repo = Path(sys.argv[1]).resolve()
-    mode = sys.argv[2]
-    if mode not in {"sgrep", "rg"}:
-        print("mode must be sgrep or rg")
+    preset = sys.argv[2]
+    mode = sys.argv[3]
+    if preset not in {"forced", "natural"}:
+        print("preset must be forced or natural")
+        return 1
+    if preset == "forced" and mode not in {"sgrep", "rg"}:
+        print("mode must be sgrep or rg for forced preset")
+        return 1
+    if preset == "natural" and mode not in {"sgrep_rg", "rg_only"}:
+        print("mode must be sgrep_rg or rg_only for natural preset")
         return 1
 
-    prompt = build_prompt(mode)
+    prompt = build_prompt(preset, mode)
     thread_id, elapsed = run_codex(prompt, repo)
     session_path = find_session_file(thread_id)
     tool_calls, tool_names, total_tokens = parse_session(session_path)
 
     out = {
         "repo": str(repo),
+        "preset": preset,
         "mode": mode,
         "queries": QUERIES,
         "thread_id": thread_id,
