@@ -2,7 +2,11 @@
 
 This repo contains a reproducible benchmark showing how sgrep (semantic search) improves Codex-Kaioken code exploration versus an rg + file-read workflow.
 
-At a glance (opencode repo, 8 queries, 3 runs median):
+Two tool-usage modes are reported:
+- **Forced (controlled):** sgrep must use `semantic_search` exactly once; rg must use rg + up to 3 file reads.
+- **Natural (realistic):** prefer sgrep first, then rg/read only if needed; or rg-only with no fixed limits.
+
+At a glance (opencode repo, 8 queries, 3 runs median, **forced**):
 
 | Metric (per-query) | sgrep | rg | delta |
 | --- | --- | --- | --- |
@@ -18,7 +22,7 @@ Natural usage (no fixed limits, 8 queries, 3 runs median):
 | Tokens | 26,637 | 74,664 | -64.3% |
 | End-to-end latency | 44.5s | 95.9s | -53.7% |
 
-Same-session sanity check (8 queries, single thread):
+Same-session sanity check (8 queries, single thread, forced):
 
 | Metric (total) | sgrep | rg | delta |
 | --- | --- | --- | --- |
@@ -36,6 +40,11 @@ Accuracy (50-query gold set, 3 runs median):
 | MRR (semantic) | 0.221 | 0.083 |
 
 Full report: `reports/SGREP_REPORT.md`
+
+Key summaries:
+- Forced per-query summary: `reports/codex_toolcall_summary.json`
+- Natural per-query summary: `reports/codex_toolcall_natural_summary.json`
+- Same-session summary: `reports/codex_toolcall_session_summary.json`
 
 ## What is included
 - Benchmark scripts under `scripts/`
@@ -75,6 +84,10 @@ python3 scripts/codex_toolcall_benchmark_session.py /path/to/repo forced rg
 python3 scripts/codex_toolcall_benchmark_session.py /path/to/repo natural sgrep_rg
 python3 scripts/codex_toolcall_benchmark_session.py /path/to/repo natural rg_only
 ```
+
+## Presets explained
+- `forced`: strict, controlled comparison for apples-to-apples measurement.
+- `natural`: no fixed limits; models use tools as they see fit under simple guidance.
 
 ## Notes
 - Benchmark date: 2026-02-01
