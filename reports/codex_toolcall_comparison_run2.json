@@ -1,0 +1,220 @@
+{
+  "repo": "opencode",
+  "queries": [
+    "where is the websocket connection handled",
+    "how does the authentication flow work",
+    "where are API routes defined",
+    "how is state management implemented",
+    "where is the database schema defined",
+    "how are errors handled globally",
+    "where is the main entry point",
+    "how does the caching layer work"
+  ],
+  "results": [
+    {
+      "query": "where is the websocket connection handled",
+      "mode": "sgrep",
+      "thread_id": "019c16af-e7b5-7c50-9b68-e67b83fc3b1d",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-52-32-019c16af-e7b5-7c50-9b68-e67b83fc3b1d.jsonl",
+      "tool_calls_total": 1,
+      "tool_calls_by_name": {
+        "semantic_search": 1
+      },
+      "total_tokens": 9207,
+      "latency_ms": 6242.18
+    },
+    {
+      "query": "how does the authentication flow work",
+      "mode": "sgrep",
+      "thread_id": "019c16af-ffef-74f0-b06b-4a1daa5d9e19",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-52-39-019c16af-ffef-74f0-b06b-4a1daa5d9e19.jsonl",
+      "tool_calls_total": 1,
+      "tool_calls_by_name": {
+        "semantic_search": 1
+      },
+      "total_tokens": 11620,
+      "latency_ms": 5820.4
+    },
+    {
+      "query": "where are API routes defined",
+      "mode": "sgrep",
+      "thread_id": "019c16b0-16bf-7551-be7e-f8eef4ccbb3a",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-52-44-019c16b0-16bf-7551-be7e-f8eef4ccbb3a.jsonl",
+      "tool_calls_total": 1,
+      "tool_calls_by_name": {
+        "semantic_search": 1
+      },
+      "total_tokens": 11380,
+      "latency_ms": 9985.6
+    },
+    {
+      "query": "how is state management implemented",
+      "mode": "sgrep",
+      "thread_id": "019c16b0-3dd0-75e3-9eaf-85bcdb953fc4",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-52-54-019c16b0-3dd0-75e3-9eaf-85bcdb953fc4.jsonl",
+      "tool_calls_total": 1,
+      "tool_calls_by_name": {
+        "semantic_search": 1
+      },
+      "total_tokens": 10006,
+      "latency_ms": 11392.22
+    },
+    {
+      "query": "where is the database schema defined",
+      "mode": "sgrep",
+      "thread_id": "019c16b0-6a6c-76e3-b8ca-e58121c3cf55",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-53-06-019c16b0-6a6c-76e3-b8ca-e58121c3cf55.jsonl",
+      "tool_calls_total": 1,
+      "tool_calls_by_name": {
+        "semantic_search": 1
+      },
+      "total_tokens": 9238,
+      "latency_ms": 8801.78
+    },
+    {
+      "query": "how are errors handled globally",
+      "mode": "sgrep",
+      "thread_id": "019c16b0-8cd8-7cf3-986f-b3fb16d283a9",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-53-15-019c16b0-8cd8-7cf3-986f-b3fb16d283a9.jsonl",
+      "tool_calls_total": 1,
+      "tool_calls_by_name": {
+        "semantic_search": 1
+      },
+      "total_tokens": 11870,
+      "latency_ms": 12331.57
+    },
+    {
+      "query": "where is the main entry point",
+      "mode": "sgrep",
+      "thread_id": "019c16b0-bd1c-7423-9e66-62044eedc65f",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-53-27-019c16b0-bd1c-7423-9e66-62044eedc65f.jsonl",
+      "tool_calls_total": 1,
+      "tool_calls_by_name": {
+        "semantic_search": 1
+      },
+      "total_tokens": 10041,
+      "latency_ms": 6189.48
+    },
+    {
+      "query": "how does the caching layer work",
+      "mode": "sgrep",
+      "thread_id": "019c16b0-d556-7173-b67a-dec53edb5ab8",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-53-33-019c16b0-d556-7173-b67a-dec53edb5ab8.jsonl",
+      "tool_calls_total": 1,
+      "tool_calls_by_name": {
+        "semantic_search": 1
+      },
+      "total_tokens": 12342,
+      "latency_ms": 18342.83
+    },
+    {
+      "query": "where is the websocket connection handled",
+      "mode": "rg",
+      "thread_id": "019c16b1-1d0a-7472-94f5-fa1c7b20b38b",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-53-52-019c16b1-1d0a-7472-94f5-fa1c7b20b38b.jsonl",
+      "tool_calls_total": 5,
+      "tool_calls_by_name": {
+        "exec_command": 5
+      },
+      "total_tokens": 79482,
+      "latency_ms": 53830.31
+    },
+    {
+      "query": "how does the authentication flow work",
+      "mode": "rg",
+      "thread_id": "019c16b1-ef65-7973-a789-61977a51d4ae",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-54-45-019c16b1-ef65-7973-a789-61977a51d4ae.jsonl",
+      "tool_calls_total": 3,
+      "tool_calls_by_name": {
+        "exec_command": 1,
+        "subagent_run": 2
+      },
+      "total_tokens": 44967,
+      "latency_ms": 168612.25
+    },
+    {
+      "query": "where are API routes defined",
+      "mode": "rg",
+      "thread_id": "019c16b4-8228-7fe3-aff3-f4dbbf9f3476",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-57-34-019c16b4-8228-7fe3-aff3-f4dbbf9f3476.jsonl",
+      "tool_calls_total": 6,
+      "tool_calls_by_name": {
+        "exec_command": 6
+      },
+      "total_tokens": 59613,
+      "latency_ms": 45551.13
+    },
+    {
+      "query": "how is state management implemented",
+      "mode": "rg",
+      "thread_id": "019c16b5-3420-71b1-af6d-530fc948411c",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-58-20-019c16b5-3420-71b1-af6d-530fc948411c.jsonl",
+      "tool_calls_total": 5,
+      "tool_calls_by_name": {
+        "exec_command": 5
+      },
+      "total_tokens": 125954,
+      "latency_ms": 92621.26
+    },
+    {
+      "query": "where is the database schema defined",
+      "mode": "rg",
+      "thread_id": "019c16b6-9e00-7b53-addc-749a2c37701b",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T11-59-52-019c16b6-9e00-7b53-addc-749a2c37701b.jsonl",
+      "tool_calls_total": 5,
+      "tool_calls_by_name": {
+        "exec_command": 5
+      },
+      "total_tokens": 85166,
+      "latency_ms": 66617.55
+    },
+    {
+      "query": "how are errors handled globally",
+      "mode": "rg",
+      "thread_id": "019c16b7-a25c-7d33-b6c5-2df6c5ed73e7",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T12-00-59-019c16b7-a25c-7d33-b6c5-2df6c5ed73e7.jsonl",
+      "tool_calls_total": 2,
+      "tool_calls_by_name": {
+        "subagent_run": 2
+      },
+      "total_tokens": 23202,
+      "latency_ms": 157412.77
+    },
+    {
+      "query": "where is the main entry point",
+      "mode": "rg",
+      "thread_id": "019c16ba-095d-7323-9ae0-91e62dd34a5d",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T12-03-36-019c16ba-095d-7323-9ae0-91e62dd34a5d.jsonl",
+      "tool_calls_total": 5,
+      "tool_calls_by_name": {
+        "exec_command": 5
+      },
+      "total_tokens": 52492,
+      "latency_ms": 50565.68
+    },
+    {
+      "query": "how does the caching layer work",
+      "mode": "rg",
+      "thread_id": "019c16ba-cef5-7cc2-a266-3da7ea4b4e3d",
+      "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T12-04-27-019c16ba-cef5-7cc2-a266-3da7ea4b4e3d.jsonl",
+      "tool_calls_total": 6,
+      "tool_calls_by_name": {
+        "exec_command": 6
+      },
+      "total_tokens": 86012,
+      "latency_ms": 93193.5
+    }
+  ],
+  "summary": {
+    "sgrep": {
+      "queries": 8,
+      "avg_tool_calls": 1.0,
+      "avg_total_tokens": 10713
+    },
+    "rg": {
+      "queries": 8,
+      "avg_tool_calls": 4.62,
+      "avg_total_tokens": 69611
+    }
+  }
+}

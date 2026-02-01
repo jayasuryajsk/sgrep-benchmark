@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"019c1201-79cf-7731-b17f-49bfe1ef3ea1"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"reasoning","text":"**Requiring semantic search module**"}}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"Top 3 matches from sgrep:\n- `packages/opencode/src/server/server.ts`\n- `packages/opencode/src/lsp/server.ts`\n- `packages/console/app/src/routes/t/[...path].tsx`"}}
+{"type":"turn.completed","usage":{"input_tokens":9060,"cached_input_tokens":0,"output_tokens":94}}

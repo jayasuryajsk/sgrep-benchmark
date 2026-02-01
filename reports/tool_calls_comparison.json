@@ -1,0 +1,170 @@
+{
+  "summary": {
+    "total_sgrep_calls": 8,
+    "total_grep_calls": 64,
+    "avg_savings_per_query": 7.0,
+    "estimated_tokens_saved_per_query": 2100
+  },
+  "results": [
+    {
+      "query": "where is the websocket connection handled",
+      "sgrep": {
+        "calls": 1,
+        "time_ms": 1130.2998065948486,
+        "files": [
+          "packages/sdk/js/src/v2/gen/client/client.gen.ts",
+          "packages/sdk/js/src/gen/client/client.gen.ts",
+          "packages/opencode/src/cli/cmd/web.ts",
+          "packages/sdk/js/src/gen/client/client.gen.ts",
+          "packages/web/src/content/docs/server.mdx"
+        ]
+      },
+      "grep": {
+        "calls": 8,
+        "time_ms": 14695.442914962769,
+        "candidate_files": 55
+      },
+      "savings": 7
+    },
+    {
+      "query": "how does the authentication flow work",
+      "sgrep": {
+        "calls": 1,
+        "time_ms": 901.4549255371094,
+        "files": [
+          "packages/console/app/src/routes/auth/authorize.ts",
+          "packages/console/function/src/auth.ts",
+          "packages/console/function/src/auth.ts",
+          "packages/sdk/js/src/v2/gen/core/auth.gen.ts",
+          "packages/sdk/js/src/gen/core/auth.gen.ts"
+        ]
+      },
+      "grep": {
+        "calls": 8,
+        "time_ms": 10197.529792785645,
+        "candidate_files": 50
+      },
+      "savings": 7
+    },
+    {
+      "query": "where are API routes defined",
+      "sgrep": {
+        "calls": 1,
+        "time_ms": 918.4393882751465,
+        "files": [
+          "packages/console/app/src/routes/api/enterprise.ts",
+          "packages/enterprise/src/routes/api/[...path].ts",
+          "packages/enterprise/src/routes/api/[...path].ts",
+          "packages/enterprise/src/routes/api/[...path].ts",
+          "packages/enterprise/src/routes/api/[...path].ts"
+        ]
+      },
+      "grep": {
+        "calls": 8,
+        "time_ms": 9627.718687057495,
+        "candidate_files": 55
+      },
+      "savings": 7
+    },
+    {
+      "query": "how is state management implemented",
+      "sgrep": {
+        "calls": 1,
+        "time_ms": 843.3551788330078,
+        "files": [
+          "packages/opencode/src/project/state.ts",
+          "packages/app/src/components/prompt-input.tsx",
+          "packages/opencode/src/provider/auth.ts",
+          "packages/opencode/src/session/status.ts",
+          "packages/opencode/src/session/compaction.ts"
+        ]
+      },
+      "grep": {
+        "calls": 8,
+        "time_ms": 11060.930728912354,
+        "candidate_files": 48
+      },
+      "savings": 7
+    },
+    {
+      "query": "where is the database schema defined",
+      "sgrep": {
+        "calls": 1,
+        "time_ms": 867.9401874542236,
+        "files": [
+          "packages/console/core/src/model.ts",
+          "packages/console/core/src/schema/model.sql.ts",
+          "packages/console/core/src/schema/workspace.sql.ts",
+          "packages/console/core/src/schema/billing.sql.ts",
+          "packages/console/core/src/schema/benchmark.sql.ts"
+        ]
+      },
+      "grep": {
+        "calls": 8,
+        "time_ms": 9990.384101867676,
+        "candidate_files": 49
+      },
+      "savings": 7
+    },
+    {
+      "query": "how are errors handled globally",
+      "sgrep": {
+        "calls": 1,
+        "time_ms": 849.5581150054932,
+        "files": [
+          "packages/enterprise/src/core/share.ts",
+          "packages/opencode/src/server/error.ts",
+          "packages/opencode/src/server/error.ts",
+          "packages/opencode/src/cli/error.ts",
+          "packages/app/src/pages/error.tsx"
+        ]
+      },
+      "grep": {
+        "calls": 8,
+        "time_ms": 12141.335010528564,
+        "candidate_files": 59
+      },
+      "savings": 7
+    },
+    {
+      "query": "where is the main entry point",
+      "sgrep": {
+        "calls": 1,
+        "time_ms": 907.8490734100342,
+        "files": [
+          "packages/desktop/src-tauri/src/main.rs",
+          "packages/app/src/context/file.tsx",
+          "packages/opencode/src/cli/cmd/tui/component/prompt/autocomplete.tsx",
+          "packages/opencode/src/lsp/server.ts",
+          "packages/desktop/src-tauri/src/lib.rs"
+        ]
+      },
+      "grep": {
+        "calls": 8,
+        "time_ms": 10130.983829498291,
+        "candidate_files": 49
+      },
+      "savings": 7
+    },
+    {
+      "query": "how does the caching layer work",
+      "sgrep": {
+        "calls": 1,
+        "time_ms": 865.4980659484863,
+        "files": [
+          "packages/opencode/src/file/time.ts",
+          "packages/app/src/context/layout-scroll.ts",
+          "packages/opencode/src/acp/session.ts",
+          "packages/opencode/src/session/prompt.ts",
+          "packages/opencode/src/cli/cmd/session.ts"
+        ]
+      },
+      "grep": {
+        "calls": 8,
+        "time_ms": 11483.811855316162,
+        "candidate_files": 57
+      },
+      "savings": 7
+    }
+  ]
+}

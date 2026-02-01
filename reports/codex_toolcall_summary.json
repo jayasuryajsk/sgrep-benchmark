@@ -1,0 +1,24 @@
+{
+  "runs": [
+    "reports/codex_toolcall_comparison_run1.json",
+    "reports/codex_toolcall_comparison_run2.json",
+    "reports/codex_toolcall_comparison_run3.json"
+  ],
+  "summary": {
+    "sgrep": {
+      "avg_tool_calls_median": 1.0,
+      "avg_total_tokens_median": 10575,
+      "avg_latency_ms_median": 9888.26
+    },
+    "rg": {
+      "avg_tool_calls_median": 4.88,
+      "avg_total_tokens_median": 70508,
+      "avg_latency_ms_median": 72323.76
+    },
+    "reductions": {
+      "tool_calls_pct": 79.5,
+      "tokens_pct": 85.0,
+      "latency_pct": 86.3
+    }
+  }
+}

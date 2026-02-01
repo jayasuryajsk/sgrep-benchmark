@@ -1,0 +1,156 @@
+# Gold Query Set (Review)
+
+Repo: opencode
+
+Format: query + ground-truth file:line range
+
+- q001: Where is the PTY WebSocket connection endpoint implemented?
+  - Answer: `packages/opencode/src/server/server.ts:410-439`
+  - Notes: upgradeWebSocket for /pty/:ptyID/connect
+- q002: Where is the global events SSE stream implemented?
+  - Answer: `packages/opencode/src/server/server.ts:155-219`
+  - Notes: streamSSE on /global/event
+- q003: Where does the server stream session prompt responses?
+  - Answer: `packages/opencode/src/server/server.ts:1396-1434`
+  - Notes: stream() in /session/:sessionID/message
+- q004: Where does the server report health and version info?
+  - Answer: `packages/opencode/src/server/server.ts:150-153`
+  - Notes: health endpoint returns Installation.VERSION
+- q005: Where is the config GET endpoint implemented?
+  - Answer: `packages/opencode/src/server/server.ts:442-461`
+  - Notes: GET /config returns Config.get()
+- q006: Where is PTY session creation implemented?
+  - Answer: `packages/opencode/src/pty/index.ts:96-123`
+  - Notes: Pty.create spawns bun-pty
+- q007: Where is PTY WebSocket bridging (connect) implemented?
+  - Answer: `packages/opencode/src/pty/index.ts:197-220`
+  - Notes: Pty.connect hooks WSContext and forwards data
+- q008: Where is config precedence (well-known, global, project) implemented?
+  - Answer: `packages/opencode/src/config/config.ts:38-85`
+  - Notes: Config.state loads well-known, global, project, inline
+- q009: Where are .opencode directories scanned for config/plugins?
+  - Answer: `packages/opencode/src/config/config.ts:91-118`
+  - Notes: Config.state builds directories list and loads files
+- q010: Where are built-in tools assembled into the tool list?
+  - Answer: `packages/opencode/src/tool/registry.ts:90-113`
+  - Notes: ToolRegistry.all() returns default tools
+- q011: Where is codesearch/websearch enabled only for opencode provider?
+  - Answer: `packages/opencode/src/tool/registry.ts:120-129`
+  - Notes: ToolRegistry.tools() filter for codesearch/websearch
+- q012: Where is the CodeSearch tool (Exa MCP) implemented?
+  - Answer: `packages/opencode/src/tool/codesearch.ts:35-112`
+  - Notes: CodeSearchTool defines Exa MCP request
+- q013: Where does OpenCode download ripgrep if missing?
+  - Answer: `packages/opencode/src/file/ripgrep.ts:125-139`
+  - Notes: Ripgrep.state fetches release when rg missing
+- q014: Where is the TypeScript LSP server spawned?
+  - Answer: `packages/opencode/src/lsp/server.ts:89-114`
+  - Notes: LSPServer.Typescript.spawn uses typescript-language-server
+- q015: Where does Vue LSP get installed if missing?
+  - Answer: `packages/opencode/src/lsp/server.ts:118-137`
+  - Notes: Vue LSP download/install when binary missing
+- q016: Where is session overflow detection for compaction?
+  - Answer: `packages/opencode/src/session/compaction.ts:30-38`
+  - Notes: SessionCompaction.isOverflow
+- q017: Where is session tool-output pruning implemented?
+  - Answer: `packages/opencode/src/session/compaction.ts:49-88`
+  - Notes: SessionCompaction.prune
+- q018: Where does session summary compute diffs and store them?
+  - Answer: `packages/opencode/src/session/summary.ts:37-61`
+  - Notes: summarizeSession writes session_diff
+- q019: Where is session title summarization performed?
+  - Answer: `packages/opencode/src/session/summary.ts:82-110`
+  - Notes: LLM stream to generate title
+- q020: Where are models refreshed from the models.dev API?
+  - Answer: `packages/opencode/src/provider/models.ts:87-103`
+  - Notes: ModelsDev.refresh fetches api.json
+- q021: Where is provider OAuth callback handled and stored?
+  - Answer: `packages/opencode/src/provider/auth.ts:74-112`
+  - Notes: ProviderAuth.callback stores Auth info
+- q022: Where are auth tokens stored on disk?
+  - Answer: `packages/opencode/src/auth/index.ts:38-63`
+  - Notes: Auth filepath uses Global.Path.data/auth.json
+- q023: Where is worktree name/branch generation implemented?
+  - Answer: `packages/opencode/src/worktree/index.ts:163-176`
+  - Notes: Worktree.candidate picks name and branch
+- q024: Where is git worktree creation executed?
+  - Answer: `packages/opencode/src/worktree/index.ts:188-200`
+  - Notes: Worktree.create uses git worktree add
+- q025: Where is project ID derived from the git root commit?
+  - Answer: `packages/opencode/src/project/project.ts:74-105`
+  - Notes: Project.fromDirectory computes root commit id
+- q026: Where are plugins loaded (built-in and configured)?
+  - Answer: `packages/opencode/src/plugin/index.ts:43-71`
+  - Notes: Plugin.state loads built-ins and config plugins
+- q027: Where is the permission ask flow implemented?
+  - Answer: `packages/opencode/src/permission/next.ts:116-141`
+  - Notes: PermissionNext.ask
+- q028: Where is permission reply handling implemented?
+  - Answer: `packages/opencode/src/permission/next.ts:148-176`
+  - Notes: PermissionNext.reply
+- q029: Where is user question request handled (Question.ask)?
+  - Answer: `packages/opencode/src/question/index.ts:96-119`
+  - Notes: Question.ask publishes question.asked
+- q030: Where is preferred shell selection implemented?
+  - Answer: `packages/opencode/src/shell/shell.ts:36-60`
+  - Notes: Shell.preferred uses env or fallback
+- q031: Where is the config PATCH endpoint implemented?
+  - Answer: `packages/opencode/src/server/server.ts:464-486`
+  - Notes: PATCH /config updates settings
+- q032: Where does prompt handling map legacy tools permissions into rules?
+  - Answer: `packages/opencode/src/session/prompt.ts:157-171`
+  - Notes: Backwards compatibility for input.tools
+- q033: Where does prompt handling skip reply when noReply is true?
+  - Answer: `packages/opencode/src/session/prompt.ts:174-176`
+  - Notes: Early return if noReply
+- q034: Where does prompt parsing resolve file references into prompt parts?
+  - Answer: `packages/opencode/src/session/prompt.ts:181-189`
+  - Notes: resolvePromptParts + ConfigMarkdown.files
+- q035: Where are built-in plugins listed?
+  - Answer: `packages/opencode/src/plugin/index.ts:15-16`
+  - Notes: BUILTIN plugins list
+- q036: Where does plugin init subscribe to bus events?
+  - Answer: `packages/opencode/src/plugin/index.ts:102-116`
+  - Notes: Plugin.init uses Bus.subscribeAll
+- q037: Where does BusEvent build the discriminated union of payloads?
+  - Answer: `packages/opencode/src/bus/bus-event.ts:21-38`
+  - Notes: BusEvent.payloads
+- q038: Where is the global event bus defined?
+  - Answer: `packages/opencode/src/bus/global.ts:1-9`
+  - Notes: GlobalBus EventEmitter
+- q039: Where is Storage.read implemented?
+  - Answer: `packages/opencode/src/storage/storage.ts:168-175`
+  - Notes: Storage.read reads JSON with Lock.read
+- q040: Where is Storage.write implemented?
+  - Answer: `packages/opencode/src/storage/storage.ts:190-196`
+  - Notes: Storage.write writes JSON with Lock.write
+- q041: Where does worktree slugify names?
+  - Answer: `packages/opencode/src/worktree/index.ts:134-140`
+  - Notes: Worktree.slug
+- q042: Where is process tree termination handled on Windows?
+  - Answer: `packages/opencode/src/shell/shell.ts:13-19`
+  - Notes: Shell.killTree uses taskkill on win32
+- q043: Where does LSP NearestRoot compute the project root?
+  - Answer: `packages/opencode/src/lsp/server.ts:41-49`
+  - Notes: NearestRoot uses Filesystem.up
+- q044: Where does CodeSearchTool request permission before calling Exa?
+  - Answer: `packages/opencode/src/tool/codesearch.ts:52-61`
+  - Notes: ctx.ask for codesearch
+- q045: Where is OAUTH_DUMMY_KEY defined?
+  - Answer: `packages/opencode/src/auth/index.ts:6-6`
+  - Notes: OAUTH_DUMMY_KEY constant
+- q046: Where does ModelsDev.get read cached models or fall back to macro data?
+  - Answer: `packages/opencode/src/provider/models.ts:78-84`
+  - Notes: ModelsDev.get loads cache or macro
+- q047: Where is Project.Event.Updated defined?
+  - Answer: `packages/opencode/src/project/project.ts:43-45`
+  - Notes: Project.Event Updated
+- q048: Where is the permission ruleset built from config?
+  - Answer: `packages/opencode/src/permission/next.ts:36-49`
+  - Notes: PermissionNext.fromConfig
+- q049: Where is Question.reply implemented?
+  - Answer: `packages/opencode/src/question/index.ts:122-139`
+  - Notes: Question.reply handles answers
+- q050: Where is the worktree random name generated?
+  - Answer: `packages/opencode/src/worktree/index.ts:143-145`
+  - Notes: Worktree.randomName

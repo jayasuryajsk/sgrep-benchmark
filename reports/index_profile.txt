@@ -1,0 +1,7 @@
+Indexing: opencode
+2026-01-31T02:41:23.174073Z  INFO Indexing: opencode
+2026-01-31T02:41:23.769919Z  INFO Built hierarchical index: 1161 files, 226 directories
+✔ Indexed 1162 files (4410 chunks) in 1 second
+  4578 symbols extracted, 14179 relationships
+  walk: 0 seconds | chunk: 0 seconds | embed: 0 seconds | graph: 0 seconds | write: 0 seconds
+  cache hits: 4410 | cache misses: 0 | hit rate: 100.0%

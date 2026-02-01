@@ -1,0 +1,4 @@
+Top 3 file paths:
+- `packages/opencode/src/server/server.ts`
+- `packages/opencode/src/pty/index.ts`
+- `packages/web/src/components/Share.tsx`

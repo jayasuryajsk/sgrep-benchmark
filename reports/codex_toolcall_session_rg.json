@@ -1,0 +1,26 @@
+{
+  "repo": "opencode",
+  "mode": "rg",
+  "queries": [
+    "where is the websocket connection handled",
+    "how does the authentication flow work",
+    "where are API routes defined",
+    "how is state management implemented",
+    "where is the database schema defined",
+    "how are errors handled globally",
+    "where is the main entry point",
+    "how does the caching layer work"
+  ],
+  "thread_id": "019c16d9-7ed8-7ee3-8a1d-4373dd3da879",
+  "session_path": "~/.codex/sessions/2026/02/01/rollout-2026-02-01T12-37-58-019c16d9-7ed8-7ee3-8a1d-4373dd3da879.jsonl",
+  "tool_calls_total": 18,
+  "tool_calls_by_name": {
+    "subagent_run": 2,
+    "exec_command": 16
+  },
+  "total_tokens": 593259,
+  "latency_ms": 1219512.15,
+  "avg_tool_calls_per_query": 2.25,
+  "avg_tokens_per_query": 74157,
+  "avg_latency_ms_per_query": 152439.02
+}

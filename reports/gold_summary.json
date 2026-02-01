@@ -1,0 +1,38 @@
+{
+  "keyword_like_median": {
+    "sgrep": {
+      "hit_rate": 0.38,
+      "mrr": 0.279,
+      "p50": 836.06
+    },
+    "rg": {
+      "hit_rate": 0.36,
+      "mrr": 0.108,
+      "p50": 118.22
+    }
+  },
+  "semantic_median": {
+    "sgrep": {
+      "hit_rate": 0.3,
+      "mrr": 0.221,
+      "p50": 858.42
+    },
+    "rg": {
+      "hit_rate": 0.22,
+      "mrr": 0.083,
+      "p50": 118.03
+    }
+  },
+  "runs": {
+    "keyword_like": [
+      "reports/gold_results_run1.csv",
+      "reports/gold_results_run2.csv",
+      "reports/gold_results_run3.csv"
+    ],
+    "semantic": [
+      "reports/gold_results_sem_run1.csv",
+      "reports/gold_results_sem_run2.csv",
+      "reports/gold_results_sem_run3.csv"
+    ]
+  }
+}

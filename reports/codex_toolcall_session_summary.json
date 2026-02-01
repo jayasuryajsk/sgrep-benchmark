@@ -1,0 +1,29 @@
+{
+  "repo": "opencode",
+  "mode": "session",
+  "queries": 8,
+  "sgrep": {
+    "tool_calls_total": 8,
+    "avg_tool_calls_per_query": 1.0,
+    "total_tokens": 56646,
+    "avg_tokens_per_query": 7080,
+    "latency_ms": 50564.72,
+    "avg_latency_ms_per_query": 6320.59
+  },
+  "rg": {
+    "tool_calls_total": 18,
+    "avg_tool_calls_per_query": 2.25,
+    "total_tokens": 593259,
+    "avg_tokens_per_query": 74157,
+    "latency_ms": 1219512.15,
+    "avg_latency_ms_per_query": 152439.02
+  },
+  "reductions_pct": {
+    "tool_calls_total": 55.6,
+    "avg_tool_calls_per_query": 55.6,
+    "total_tokens": 90.5,
+    "avg_tokens_per_query": 90.5,
+    "latency_ms": 95.9,
+    "avg_latency_ms_per_query": 95.9
+  }
+}
